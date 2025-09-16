@@ -1,1 +1,542 @@
-# github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mihir Merani - Interactive Resume</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        
+        .resume-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary-color);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 50%;
+            background: white;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 22px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background: var(--secondary-color);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            border-radius: 5px;
+        }
+        
+        .achievement-card {
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--secondary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: var(--dark-color);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 250px;
+            margin-bottom: 30px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 120px;
+                height: 120px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container my-5">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="profile-img">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <h1>Mihir Merani</h1>
+            <p class="lead">MBA Candidate | Business Analyst | Strategy Consultant</p>
+            <p>Class of 2026 | BITSoM, Mumbai</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container-fluid p-4">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="section-title">Contact Info</h4>
+                            <p><i class="fas fa-envelope me-2"></i> Email: mihir.merani@example.com</p>
+                            <p><i class="fas fa-phone me-2"></i> Phone: +91 XXXXX XXXXX</p>
+                            <p><i class="fab fa-linkedin me-2"></i> LinkedIn: linkedin.com/in/mihirmerani</p>
+                            <p><i class="fab fa-github me-2"></i> GitHub: github.com/mihirmerani</p>
+                            
+                            <h4 class="section-title mt-4">Key Skills</h4>
+                            <div class="mb-3">
+                                <p class="mb-1">Financial Analysis</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <p class="mb-1">Project Management</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <p class="mb-1">Data Analytics</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <p class="mb-1">Strategic Planning</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            
+                            <h4 class="section-title mt-4">Education Chart</h4>
+                            <div class="chart-container">
+                                <canvas id="educationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="section-title">Test Scores</h4>
+                            <div class="chart-container">
+                                <canvas id="testScoresChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-experience-tab" data-bs-toggle="pill" data-bs-target="#pills-experience" type="button" role="tab">Experience</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-education-tab" data-bs-toggle="pill" data-bs-target="#pills-education" type="button" role="tab">Education</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-achievements-tab" data-bs-toggle="pill" data-bs-target="#pills-achievements" type="button" role="tab">Achievements</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content" id="pills-tabContent">
+                        <!-- Experience Tab -->
+                        <div class="tab-pane fade show active" id="pills-experience" role="tabpanel">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h4 class="section-title">Work Experience</h4>
+                                    
+                                    <div class="timeline-item">
+                                        <h5>Senior Analyst - Ernst & Young LLP</h5>
+                                        <p class="text-muted">Jun 2022 - May 2024</p>
+                                        <p>Assurance, Forensics</p>
+                                        
+                                        <h6>Key Achievements:</h6>
+                                        <ul>
+                                            <li>Received a fast track promotion in 16 months, surpassing company average promotion cycle by 8 months</li>
+                                            <li>Retained 2 clients, generating INR 16L in revenue from logistics and manpower fields</li>
+                                        </ul>
+                                        
+                                        <h6>Forensic Investigations & Compliance:</h6>
+                                        <ul>
+                                            <li>Executed 20+ vendor performance reviews, driving remediation or termination of 15+ high-risk contracts</li>
+                                            <li>Secured SAR 200,000 compensation by resolving contract inefficiencies at infra leader</li>
+                                            <li>Identified 15+ inefficiencies by analyzing 500GB+ enterprise data</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <h4 class="section-title mt-5">Internships</h4>
+                                    
+                                    <div class="timeline-item">
+                                        <h5>Product Strategy Intern – IDFC FIRST Bank (Wealth)</h5>
+                                        <p class="text-muted">Apr 2025 - Jun 2025</p>
+                                        <ul>
+                                            <li>Benchmarked 9 health insurance apps, analyzing 50+ DIY flows to identify gaps</li>
+                                            <li>Curated 20+ investment ideas, enhancing portfolio diversity</li>
+                                            <li>Re-engaged 1,200+ dormant users by profiling 150+ interactions</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <h5>Intern – QNext AI</h5>
+                                        <p class="text-muted">Jan 2025 - Mar 2025</p>
+                                        <ul>
+                                            <li>Reviewed 20+ ESG frameworks, synthesizing insights to guide AI-driven scoring methodology</li>
+                                            <li>Audited ESG code outputs against GRI Standards, identifying over twelve gaps</li>
+                                            <li>Enhanced scoring credibility by benchmarking MSCI and LSEG methodologies</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Education Tab -->
+                        <div class="tab-pane fade" id="pills-education" role="tabpanel">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h4 class="section-title">Education</h4>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Degree</th>
+                                                    <th>Institution</th>
+                                                    <th>Year</th>
+                                                    <th>Score</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>MBA</td>
+                                                    <td>BITS School of Management (BITSoM), Mumbai</td>
+                                                    <td>2026</td>
+                                                    <td>Ongoing</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>BSc (Economics)</td>
+                                                    <td>Sarla Anil Modi School of Economics, NMIMS</td>
+                                                    <td>2022</td>
+                                                    <td>3.44/4</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>XII (Sci)</td>
+                                                    <td>R.N. Podar School, CBSE</td>
+                                                    <td>2019</td>
+                                                    <td>90.6%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>X</td>
+                                                    <td>R.N. Podar School, CBSE</td>
+                                                    <td>2017</td>
+                                                    <td>9.2/10</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <h4 class="section-title mt-5">Academic Achievements</h4>
+                                    <div class="achievement-card card mb-3">
+                                        <div class="card-body">
+                                            <h5>CAT 2023</h5>
+                                            <p>Attained <strong>98.93 percentile</strong> out of <strong>2.88 Lakh candidates</strong> across the nation, ranking amongst the top 2000</p>
+                                        </div>
+                                    </div>
+                                    <div class="achievement-card card">
+                                        <div class="card-body">
+                                            <h5>MAH MBA-CET 2024</h5>
+                                            <p>Secured <strong>99.48 percentile</strong>, ranking within the top 600 out of 1.12 Lakh candidates statewide</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Achievements Tab -->
+                        <div class="tab-pane fade" id="pills-achievements" role="tabpanel">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h4 class="section-title">Case Competitions</h4>
+                                    
+                                    <div class="achievement-card card mb-3">
+                                        <div class="card-body">
+                                            <h5>Magicpin</h5>
+                                            <p class="text-muted">2025</p>
+                                            <ul>
+                                                <li>Achieved First Runners-Up among 300+ national teams, securing PPI by addressing retention gaps</li>
+                                                <li>Designed AI-driven growth strategy with gamification and partnerships, projecting 40% DAU increase</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="achievement-card card mb-4">
+                                        <div class="card-body">
+                                            <h5>Grant Thornton</h5>
+                                            <ul>
+                                                <li>Achieved 2nd Runners-Up among 342 teams, designing dual-app ecosystem for grape supply chain risks</li>
+                                                <li>Proposed QR traceability, real-time alerts, and AI tools, projecting profit uplift and reduced opacity</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 class="section-title">Positions of Responsibility</h4>
+                                    
+                                    <div class="achievement-card card mb-3">
+                                        <div class="card-body">
+                                            <h5>Case Competition Coordinator</h5>
+                                            <p class="text-muted">2024-2025</p>
+                                            <ul>
+                                                <li>Sole representative from a batch of 158 students, demonstrating exceptional analytical skills and leadership</li>
+                                                <li>Coordinated with 30+ participants and faculty members to organize and manage competition activities</li>
+                                                <li>Secured eligibility in 2 national competitions, expanding participation and enhancing visibility</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="achievement-card card mb-4">
+                                        <div class="card-body">
+                                            <h5>Senior Member, Sports Club</h5>
+                                            <p class="text-muted">2025</p>
+                                            <ul>
+                                                <li>Led recruitment of 12 from 40+ applicants, boosting talent depth & organizational effectiveness of club</li>
+                                                <li>Coordinated stakeholders to procure 15+ gym machines, boosting training capacity & reducing costs</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 class="section-title">Extracurricular Activities</h4>
+                                    
+                                    <div class="achievement-card card">
+                                        <div class="card-body">
+                                            <h5>Sports</h5>
+                                            <ul>
+                                                <li>Led team to victory in EY - Forensics (West) football tournament, defeating 10 other competing teams (2023)</li>
+                                                <li>Won championship among 8 teams, managing thirteen player men's cricket squad with effective strategy (2025)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Mihir Merani | Interactive Resume</p>
+            <p>Hosted on GitHub</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Education Chart
+        const educationCtx = document.getElementById('educationChart').getContext('2d');
+        const educationChart = new Chart(educationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['X', 'XII', 'BSc (Economics)', 'MBA'],
+                datasets: [{
+                    label: 'Academic Performance',
+                    data: [92, 90.6, 86, 0],
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.7)',
+                        'rgba(52, 152, 219, 0.7)',
+                        'rgba(52, 152, 219, 0.7)',
+                        'rgba(231, 76, 60, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(52, 152, 219, 1)',
+                        'rgba(52, 152, 219, 1)',
+                        'rgba(52, 152, 219, 1)',
+                        'rgba(231, 76, 60, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Percentage / GPA (Converted)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Academic Performance Over Time'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    if (context.label === 'BSc (Economics)') {
+                                        label += '3.44/4 (86%)';
+                                    } else if (context.label === 'MBA') {
+                                        label += 'Ongoing';
+                                    } else {
+                                        label += context.parsed.y + '%';
+                                    }
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Test Scores Chart
+        const testScoresCtx = document.getElementById('testScoresChart').getContext('2d');
+        const testScoresChart = new Chart(testScoresCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['CAT 2023 (98.93%)', 'MAH MBA-CET 2024 (99.48%)'],
+                datasets: [{
+                    data: [98.93, 99.48],
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.7)',
+                        'rgba(46, 204, 113, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(52, 152, 219, 1)',
+                        'rgba(46, 204, 113, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Test Score Percentiles'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + ' percentile';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
